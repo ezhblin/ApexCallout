@@ -7,6 +7,7 @@ public with sharing class CurrencyRatesController {
     @AuraEnabled(Cacheable = true)
     public static String getRates(Date chosenDate) {
         if (chosenDate == null) return null;
+
         String formattedDate = '' + chosenDate.year() + '-' + chosenDate.month() + '-' + chosenDate.day();
         String stringRequest = 'https://www.nbrb.by/api/exrates/rates?ondate='+ formattedDate + '&periodicity=0';
         Http http = new Http();

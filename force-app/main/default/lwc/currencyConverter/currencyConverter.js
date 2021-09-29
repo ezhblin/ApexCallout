@@ -9,6 +9,7 @@ export default class CurrencyConverter extends LightningElement {
 
     amount;
     currency;
+    currentCurrency;
     convertedAmount;
 
     uri = 'https://www.nbrb.by/api/exrates/rates?periodicity=0';
@@ -30,6 +31,7 @@ export default class CurrencyConverter extends LightningElement {
                         scale : currency.Cur_Scale
                     });
                 })
+                currencyArray.push({label : 'BYN', value : 'BYN', rate : 1, scale : 1});
                 this.currencyList = currencyArray;
             })
             .catch(error => console.log(error));
@@ -41,11 +43,17 @@ export default class CurrencyConverter extends LightningElement {
 
     requestConverter() {
         let currencyRecord = this.currencyList.find(currency => currency.value === this.currency);
-        this.convertedAmount = this.amount * currencyRecord.scale / currencyRecord.rate;
+        let currentCurrencyRecord = this.currencyList.find(currency => currency.value === this.currentCurrency);
+        let inBYN = this.amount * currentCurrencyRecord.scale * currentCurrencyRecord.rate;
+        this.convertedAmount = inBYN * currencyRecord.scale / currencyRecord.rate;
     }
 
     setCurrency(event){
         this.currency = event.target.value;
+    }
+
+    setCurrentCurrency(event){
+        this.currentCurrency = event.target.value;
     }
 
     setValue(event) {

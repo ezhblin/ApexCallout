@@ -18,6 +18,13 @@
                 placeholder="Chose currency"
                 options={currencyList}
                 variant="label-hidden"
+                onchange={setCurrentCurrency}
+        ></lightning-combobox>
+        <lightning-combobox
+                label="currency"
+                placeholder="Chose currency"
+                options={currencyList}
+                variant="label-hidden"
                 onchange={setCurrency}
         ></lightning-combobox>
         <lightning-button label="Convert" onclick={requestConverter}></lightning-button>
