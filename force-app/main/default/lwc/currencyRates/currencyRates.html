@@ -5,10 +5,43 @@
 <!-- Currency Rates -->
 <template>
     <lightning-button-group>
-        <lightning-input label="Chose date..." type="date"></lightning-input>
-        <lightning-button label="Get rates"></lightning-button>
+        <lightning-input
+                label="Chose date..."
+                variant="label-hidden"
+                placeholder="Chose date..."
+                type="date"
+                value={chosenDate}
+                onchange={setValue}
+        ></lightning-input>
+        <lightning-button label="Get rates" onclick={requestRates}></lightning-button>
     </lightning-button-group>
-    <template for:each={currencyList} for:item="currency">
 
-    </template>
+    <div>
+        <template if:false={spinner}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Index</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={dataRates} for:item="currency">
+                        <tr key={currency}>
+                            <td>{currency.Cur_Abbreviation}</td>
+                            <td>{currency.Cur_Scale}</td>
+                            <td>{currency.Cur_OfficialRate}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+
+
+        <template if:true={spinner}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    </div>
+
 </template>

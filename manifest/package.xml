@@ -8,5 +8,9 @@
         <members>currencyRates</members>
         <name>LightningComponentBundle</name>
     </types>
+    <types>
+        <members>CurrencyRatesController</members>
+        <name>ApexClass</name>
+    </types>
     <version>52.0</version>
 </Package>
