@@ -1,0 +1,26 @@
+<!--
+ - Created by eshemetov on 29/09/2021.
+ -->
+
+<!-- Currency Converter -->
+<template>
+    <lightning-button-group>
+        <lightning-input
+                label="amount"
+                variant="label-hidden"
+                placeholder="Input amount"
+                type="number"
+                value={amount}
+                onchange={setValue}
+        ></lightning-input>
+        <lightning-combobox
+                label="currency"
+                placeholder="Chose currency"
+                options={currencyList}
+                variant="label-hidden"
+                onchange={setCurrency}
+        ></lightning-combobox>
+        <lightning-button label="Convert" onclick={requestConverter}></lightning-button>
+        <h3 class="h3">{convertedAmount}</h3>
+    </lightning-button-group>
+</template>
